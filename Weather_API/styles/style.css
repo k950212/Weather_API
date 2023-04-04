@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(0, 0, 0);
+}
+body div.base {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 300px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+body div.base h1 {
+  font: 300 40px/1.9 "Noto Sans TC";
+  letter-spacing: 2px;
+  text-align: center;
+  color: darkcyan;
+}
+body div.base #choceLocation {
+  display: block;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  background: #eee;
+  border-radius: 99em;
+}
+body div.base #name {
+  font: 500 50px/1.9em "Noto Sans TC";
+  letter-spacing: 2px;
+  text-align: center;
+  color: darkcyan;
+}
+body div.base #img {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+}
+body div.base ul {
+  display: gird;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+  list-style: none;
+  background-color: rgb(251, 247, 247);
+  border-radius: 20px;
+}/*# sourceMappingURL=style.css.map */

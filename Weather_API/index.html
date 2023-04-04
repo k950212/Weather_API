@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh_tw">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <div class="base">
+      <h1>查詢地點為?</h1>
+      <select name="" id="choseLocation">
+        <option value="Taipei" selected="selected">台北</option>
+        <option value="Keelung">基隆</option>
+        <option value="New Taipei">新北市</option>
+        <option value="Taoyuan">桃園</option>
+        <option value="Yilan">宜蘭</option>
+        <option value="Hsinchu">新竹</option>
+        <option value="Chiayi">嘉義</option>
+        <option value="Changhua">彰化</option>
+        <option value="Miaoli">苗栗</option>
+        <option value="Yunlin">雲林</option>
+        <option value="Taichung">台中</option>
+        <option value="Hualien">花蓮</option>
+        <option value="Taitung">台東</option>
+        <option value="Tainan">台南</option>
+        <option value="Nantou">南投</option>
+        <option value="Kaohsiung">高雄</option>
+        <option value="Pingtung">屏東</option>
+        <option value="Penghu">澎湖</option>
+        <!-- <option value="Kinmen">金門</option> -->
+        <!-- <option value="Lienchiang">連江縣</option> -->
+      </select>
+      <div id="name">台北</div>
+      <img src="" id="img" alt="" />
+      <ul>
+        <li>溫度:<span id="temp"></span></li>
+        <li>體感:<span id="feels_like"></span></li>
+        <li>最高:<span id="temp_max"></span></li>
+        <li>最低:<span id="temp_min"></span></li>
+      </ul>
+    </div>
+
+    <script>
+      const tempApp = {
+        temp: document.querySelector("#temp"),
+        feels_like: document.querySelector("#feels_like"),
+        temp_max: document.querySelector("#temp_max"),
+        temp_min: document.querySelector("#temp_min"),
+
+        choseLocation: document.querySelector("#choseLocation"),
+        name: document.querySelector("#name"),
+        img: document.querySelector("#img"),
+        icon: "https://openweathermap.org/img/wn/" /*https://openweathermap.org/img/wn/10d@2x.png*/,
+        render(json) {
+          this.temp.textContent = json.main.temp; //更新溫度數值
+          this.feels_like.textContent = json.main.feels_like;
+          this.temp_max.textContent = json.main.temp_max;
+          this.temp_min.textContent = json.main.temp_min;
+
+          this.name.textContent =
+            this.choseLocation.options[this.choseLocation.selectedIndex].text;
+          this.img.setAttribute(
+            "src",
+            this.icon + json.weather[0].icon + "@2x.png"
+          );
+        },
+        startGet() {
+          let link = `https://api.openweathermap.org/data/2.5/weather?q=${choseLocation.value},TW&units=metric&lang=zh_tw&appid=faa8915914b5b5a6cadbb437aa5b8b72`;
+
+          fetch(link)
+            .then((res) => res.json())
+            .then((json) => {
+              console.log(json);
+              this.render(json);
+            });
+        },
+        init() {
+          this.startGet();
+          this.choseLocation.addEventListener("change", () => {
+            this.startGet();
+          });
+        },
+      };
+      tempApp.init();
+    </script>
+  </body>
+</html>
